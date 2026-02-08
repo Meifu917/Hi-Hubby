@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逃げるNOボタン</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffeef8; /* ピンク系 */
+        }
+        h1 {
+            color: #ff4a91;
+            margin-bottom: 50px;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 50px;
+            border: none;
+            transition: transform 0.1s;
+        }
+        #yes-btn {
+            background-color: #ff4a91;
+            color: white;
+            margin-right: 20px;
+        }
+        #no-btn {
+            background-color: #ccc;
+            color: #333;
+            position: absolute; /* 自由に動かせるようにするよん */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Can you go get Starbacks for me please?</h1>
+
+    <div class="container">
+        <button id="yes-btn" onclick="sayYes()">YES!</button>
+        <button id="no-btn">NO</button>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+
+        // NOボタンの上にマウスが来たら逃げる処理
+        noBtn.addEventListener('mouseover', () => {
+            // 画面の中でボタンがはみ出さない範囲を計算
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        });
+
+        // スマホのタップ対策
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // クリックを無効化
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        });
+
+        function sayYes() {
+            alert('Love you xoxo❤️');
+            // window.location.href = "https://example.com";
+        }
+    </script>
+</body>
+</html>
